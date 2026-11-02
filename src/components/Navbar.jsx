@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FaCertificate, FaCode, FaEnvelope, FaHome, FaProjectDiagram, FaUser } from 'react-icons/fa'
+import { FaCertificate, FaCode, FaEnvelope, FaHome, FaMoon, FaProjectDiagram, FaSun, FaUser } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 
 const Navbar = ({ darkMode, toggleDarkMode }) => {
@@ -7,15 +7,15 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
   const [activeTab, setActiveTab] = useState('Home');
 
   const navItems = [
-    { name: 'Home', link: '#home', icon: 'FaHome' },
-    { name: 'About', link: '#about', icon: 'FaUser' },
-    { name: 'Skills', link: '#skills', icon: 'FaCode' },
-    { name: 'Certificates', link: '#certificates', icon: 'FaCertificate' },
-    { name: 'Projects', link: '#projects', icon: 'FaProjectDiagram' },
-    { name: 'Contact', link: '#contact', icon: 'FaEnvelope' }
+    { name: 'Home', link: '#home', icon: FaHome },
+    { name: 'About', link: '#about', icon: FaUser },
+    { name: 'Skills', link: '#skills', icon: FaCode },
+    { name: 'Certificates', link: '#certificates', icon: FaCertificate },
+    { name: 'Projects', link: '#projects', icon: FaProjectDiagram },
+    { name: 'Contact', link: '#contact', icon: FaEnvelope }
   ]
   return (
-    <div className='fixed z-50 bottom-0 left-0 right.0 flex justify-center'>
+    <div className='fixed z-50 bottom-0 left-0 right-0 flex justify-center'>
       <motion.nav
         initial={{ y: 100 }}
         animate={{ y: 0 }}
@@ -30,15 +30,16 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
               onClick={toggleDarkMode}
               className='p-2 rounded-full bg-gray-900 dark:bg-gray-100 transition-colors backdrop-blur-sm'>
                 {darkMode ? (
-                  <Sun className='w-4 lg:w-5 h-4 lg:h-5 text-black' />
+                  <FaSun className='w-4 lg:w-5 h-4 lg:h-5 text-black' />
                 ) : (
-                  <Moon className='w-4 lg:w-5 h-4 lg:h-5 text-white' />
+                  <FaMoon className='w-4 lg:w-5 h-4 lg:h-5 text-white' />
                 
                 )}
 
             </motion.button>
+          </div>
 
-            <div className='flex items-center justify-around gap-1'>
+          <div className='flex items-center justify-around gap-1'>
               {navItems.map((item) => {
                 const Icon = item.icon
                 const isActive = activeTab === item.name
@@ -76,7 +77,6 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                   </motion.a>
                 )
               })}    
-            </div>
           </div>
         </div>
       </motion.nav>
