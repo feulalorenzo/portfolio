@@ -2,6 +2,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import React, { useEffect, useState } from 'react'
 import Navbar from './components/Navbar.jsx'
+import Hero from './components/Hero.jsx'
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(true)
@@ -30,6 +31,7 @@ const App = () => {
       darkMode ? 'bg-linear-to-br from-gray-900 via-[#2e0d10] to-red-900 min-h-screen' : 'bg-linear-to-br from-gray-50 to-red-50 min-h-screen'
     }>
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <Hero />
     </div>
   )
 }
