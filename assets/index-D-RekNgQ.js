@@ -93,7 +93,7 @@ Error generating stack: `+e.message+`
             animate-pulse`}),(0,Y.jsx)(`span`,{className:`text-sm font-medium dark:text-gray-300\r
             text-gray-700`,children:`Certifications`})]}),(0,Y.jsxs)(`h2`,{className:`text-3xl sm:text-4xl lg:text-5xl mb-6\r
           font-bold dark:text-white text-gray-900`,children:[`My `,(0,Y.jsx)(`span`,{className:`text-red-500\r
-            dark:text-red-400`,children:`Skills`})]}),(0,Y.jsx)(jd.div,{variants:ff,initial:`hidden`,whileInView:`visible`,viewport:{once:!0,margin:`-100px`},className:`grid grid-cols-1 border-t border-b\r
+            dark:text-red-400`,children:`Certificates`})]}),(0,Y.jsx)(jd.div,{variants:ff,initial:`hidden`,whileInView:`visible`,viewport:{once:!0,margin:`-100px`},className:`grid grid-cols-1 border-t border-b\r
           border-gray-200/50 dark:border-zinc-800/50\r
           w-full`,children:e.map((t,n)=>(0,Y.jsx)(jd.div,{variants:pf,className:`p-3 sm:p-4 flex flex-col
               justify-between group relative transition-colors duration-300
