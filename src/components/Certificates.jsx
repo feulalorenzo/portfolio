@@ -94,7 +94,7 @@ const Certificates = () => {
           <h2 className='text-3xl sm:text-4xl lg:text-5xl mb-6
           font-bold dark:text-white text-gray-900'>
             My <span className='text-red-500
-            dark:text-red-400'>Skills</span>
+            dark:text-red-400'>Certificates</span>
           </h2>
           <motion.div
           variants={containerVariants}
