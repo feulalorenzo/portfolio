@@ -65,7 +65,7 @@ const Hero = () => {
                             Junior Developer
                             <span
                             className='text-gray-400'
-                            >&lt;</span>
+                            >&gt;</span>
                         </h2>
                         <p className='mb-6 leading-relaxed max-w-md lg:max-w-lg
                         dark:text-gray-300 text-gray-700'>
