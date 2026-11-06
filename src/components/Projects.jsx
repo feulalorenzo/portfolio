@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import project1 from '../assets/project1.jpg'
-import project2 from '../assets/project2.png'
+import project2 from '../assets/project2.jpg'
+import project3 from '../assets/project3.jpg'
 import { ChevronRight, ChevronLeft, ExternalLink } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 
@@ -18,13 +19,13 @@ const Projects = () => {
     {
       id: 2,
       image: project2,
-      title: 'Project2',
-      desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla itaque dignissimos perferendis consequatur debitis rerum nihil, quam rem ab, recusandae cumque iure animi. Optio aspernatur assumenda quos, excepturi neque quo.',
-      tags: ['React Js', 'Tailwind CSS', 'Framer Motion']
+      title: 'Grabya!',
+      desc: '2D Puzzle Game developed during a Game Jam contest',
+      tags: ['Godot', 'GDScript']
     },
     {
       id: 3,
-      image: project2,
+      image: project3,
       title: 'Project3',
       desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla itaque dignissimos perferendis consequatur debitis rerum nihil, quam rem ab, recusandae cumque iure animi. Optio aspernatur assumenda quos, excepturi neque quo.',
       tags: ['React Js', 'Tailwind CSS', 'Framer Motion']
