@@ -14,7 +14,7 @@ const Projects = () => {
       image: project1,
       title: 'Ermes Project',
       desc:'The ERMES project aims to develop an advanced technological solution for the motor rehabilitation of patients with neuromotor or neurocognitive disabilities. At the heart of the system is NovaWalk, a collaborative robotic walker featuring impedance control and anthropometric adjustment, integrated with sensors for tracking and monitoring physiological parameters. The device interfaces with a Mixed Reality (MR) and Shared Reality platform, which engages the patient in stimulating "exergames" while allowing the therapist to monitor biomechanical and emotional performance in real time, facilitating a highly personalized therapy.',
-      tags: ['Unity']
+      tags: ['Unity', 'C#']
     },
     {
       id: 2,
