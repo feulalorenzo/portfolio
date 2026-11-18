@@ -1,8 +1,41 @@
 import { Send } from 'lucide-react'
-import React from 'react'
+import React, { useState } from 'react'
 import contactImg from "../assets/contact.png"
 
 const Contact = () => {
+
+  const [formData, setFormData] = useState({ name: '', email: '', message: ''})
+  const [status, setStatus] = useState({ loading: false, message: '', isError: false})
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus({ loading: true, message: '', isError: false })
+  
+
+    try {
+      const res = await fetch('/api/send-message.php', {
+        method: 'POST',
+        headers: { 'Content-Type' : 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await res.json()
+
+      if(res.ok && data.success) {
+        setStatus({ loading: false, message: data.message, isError: false })
+        setFormData({ name: '', email: '', message: ''})
+        setTimeout(() => {
+        setStatus({ loading: false, message: '', isError: false })
+        }, 4000)
+      } else {
+        setStatus({ loading: false, message: data.message || 'Error while sending', isError: true})
+      }
+
+    } catch (err) {
+      setStatus({ loading: false, message: 'Error connecting to server', isError: true})
+    }
+  }
+
   return (
     <section id='contact' className='py-20 relative overflow-hidden'>
       <div className='container mx-auto px-6 max-w-6xl relative z-10'>
@@ -19,7 +52,7 @@ const Contact = () => {
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-16
           items-center'>
             <form 
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
             className='flex flex-col gap-5 dark:bg-zinc-900/30
             bg-white/50 p-8 sm:p-10 rounded-3xl border
             dark:border-zinc-800 border-gray-100
@@ -27,6 +60,9 @@ const Contact = () => {
             lg:mx-0 order-2 lg:order-1'
             data-aos='fade-right'>
               <input
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value })}
+              required
               type="text"
               placeholder='Name'
               className='w-full px-5 py-4 rounded-xl border
@@ -37,6 +73,8 @@ const Contact = () => {
               focus:border-red-500 dark:focus:border-red-400'
               />
               <input
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               type="email"
               placeholder='Email'
               className='w-full px-5 py-4 rounded-xl border
@@ -51,6 +89,8 @@ const Contact = () => {
               />
 
               <textarea
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value})}
               rows={5}
               placeholder='Message'
               className='w-full px-5 py-4 rounded-xl border
@@ -65,6 +105,8 @@ const Contact = () => {
               data-aos-delay='300'
               />
               <button
+              type='submit'
+              disabled={status.loading}
               className='inline-flex items-center
               justify-center gap-2 px-8 py-4 rounded-xl
               text-white font-medium text-base
@@ -76,6 +118,11 @@ const Contact = () => {
                 <Send size={18}/>
                 Send Message
               </button>
+              {status.message && (
+                <p className={`text-sm font-medium ${status.isError ? 'text-red-500' : 'text-green-500'}`}>
+                  {status.message}
+                </p>
+              )}
             </form>
             <div
             className='flex justify-center w-full relative

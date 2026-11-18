@@ -12,6 +12,7 @@ import Footer from './components/Footer.jsx'
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(true)
+  const [portfolioData, setPortfolioData] = useState(null)
 
   useEffect(() => {
     AOS.init({
@@ -20,6 +21,11 @@ const App = () => {
       offset: 100
     });
     document.documentElement.classList.add('dark');
+
+    fetch('/api/get-portfolio.php')
+      .then((res) => res.json())
+      .then((data) => setPortfolioData(data))
+      .catch((err) => console.error('Errore nel caricamento dati:', err));
   }, []);
 
   useEffect(() => {
@@ -37,13 +43,13 @@ const App = () => {
       darkMode ? 'bg-linear-to-br from-gray-900 via-[#2e0d10] to-red-900 min-h-screen' : 'bg-linear-to-br from-gray-50 to-red-50 min-h-screen'
     }>
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <Hero />
-      <About />
-      <Skills />
-      <Certificates />
-      <Projects />
+      <Hero profile={portfolioData?.profile} socials={portfolioData?.socials} />
+      <About profile={portfolioData?.profile} socials={portfolioData?.socials} />
+      <Skills skills={portfolioData?.skills} websiteText={portfolioData?.website_text} />
+      <Certificates certificates={portfolioData?.certificates} />
+      <Projects projects={portfolioData?.projects} />
       <Contact />
-      <Footer />
+      <Footer profile={portfolioData?.profile} socials={portfolioData?.socials} />
     </div>
   )
 }

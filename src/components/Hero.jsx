@@ -2,10 +2,9 @@ import { link } from 'framer-motion/client'
 import React from 'react'
 import { FaGithub, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa'
 import hero from '../assets/hero.png'
-import CV from '../assets/CV.pdf'
 import { DownloadIcon, Mail } from 'lucide-react'
 
-const Hero = () => {
+const Hero = ({ profile }) => {
     const socialIcons = [
         { icon: FaInstagram, alt: 'Instagram', link:'#'},
         { icon: FaTiktok, alt: 'Instagram', link:'#'},
@@ -49,32 +48,32 @@ const Hero = () => {
                             animate-pulse'/>
                             <span className='text-sm font-medium 
                             dark:text-red-300 text-gray-700'>
-                                Available for work
+                                { profile?.availability_text }
                             </span>
                         </div>
                         <h1 className='text-4xl sm:text-5xl lg:text-6xl
                         font-bold mb-3 dark:text-white text-gray-900'>
                             Hi, I'm <span
-                            className='text-red-600 dark:text-red-300'>Lorenzo</span>
+                            className='text-red-600 dark:text-red-300'>{ profile?.my_name }</span>
                         </h1>
                         <h2 className='text-xl sm:text-2xl font-mono mb-4
                         dark:text-red-400 text-red-600'>
                             <span
                             className='text-gray-400'
                             >&lt;</span>
-                            Junior Developer
+                            { profile?.my_role }
                             <span
                             className='text-gray-400'
                             >&gt;</span>
                         </h2>
                         <p className='mb-6 leading-relaxed max-w-md lg:max-w-lg
                         dark:text-gray-300 text-gray-700'>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat cumque doloribus architecto, reiciendis numquam temporibus sed blanditiis ducimus deserunt aut vel porro? Tempora laudantium ab est deserunt illum quod? Debitis!
+                            { profile?.hero_bio }
                         </p>
                         <div className='flex gap-8 mb-7'>
                             {[
-                                { number: '2+', label: 'Years Experience'},
-                                { number: '2+', label: 'Projects Done'},
+                                { number: profile?.years_exp, label: 'Years Experience'},
+                                { number: profile?.projects_done, label: 'Projects Done'},
                                 // { number: '10+', label: 'Happy Clients'},
                             ].map((stat, index) => (
                                 <div key={index} className='text-center'>
@@ -90,7 +89,7 @@ const Hero = () => {
                         </div>
                         <div className='flex flex-col sm:flex-row gap-4 w-full
                         sm:w-auto'>
-                            <a href={CV} download className='w-full sm:w-auto'>
+                            <a href={profile?.cv_url} download className='w-full sm:w-auto'>
                                 <button className='w-full  sm:w-auto inline-flex
                                 items-center justify-center gap-2 px-8 py-3
                                 rounded-full text-white font-semibold

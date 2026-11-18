@@ -1,31 +1,38 @@
 import React from 'react'
-import { FaGithub, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa'
+import { FaGithub, FaInstagram, FaLinkedin, FaTiktok, FaYoutube } from 'react-icons/fa'
 import about from '../assets/about.png'
 import { ArrowRight } from 'lucide-react'
 
-const About = () => {
-  const socialLinks = [
-    {
+const About = ({ profile, socials = [] }) => {
+  
+  const about_words = profile?.about_title ? profile.about_title.split(' '): []
+  const firstPart = about_words.slice(0, -2).join(' ')
+  const secondPart = about_words.slice(-2).join(' ')
+  
+  const socialConfig = {
+
+    Instagram: {
       icon: FaInstagram,
-      label: 'Instagram',
-      color:'hover:text-pink-500 hover:border-pink-500/40'
+      color: 'hover:text-pink-500 hover:border-pink-500/40'
     },
-    {
+    Tiktok: {
       icon: FaTiktok,
-      label: 'Tiktok',
-      color:'hover:text-purple-500 hover:border-purple-500/40'
+      color: 'hover:text-purple-500 hover:border-purple-500/40'
     },
-    {
+    Github: {
       icon: FaGithub,
-      label: 'Github',
-      color:'hover:text-blue-500 hover:border-blue-500/40'
+      color: 'hover:text-blue-500 hover:border-blue-500/40'
     },
-    {
+    Youtube: {
       icon: FaYoutube,
-      label: 'Youtube',
-      color:'hover:text-red-500 hover:border-red-500/40'
+      color: 'hover:text-red-500 hover:border-red-500/40'
+    },
+    Linkedin: {
+      icon: FaLinkedin,
+      color: 'hover:text-blue-300 hover:border-blue-300/40'
     }
-  ]
+  }
+
   return (
     <section id='about' className='min-h-screen flex items-center
     py-20 px-4 sm:px-6 overflow-hidden relative'>
@@ -46,22 +53,28 @@ const About = () => {
           </div>
           <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold
           mb-6 dark:text-white text-gray-900 leading-tight'>
-            Turning Ideas Into
+            { firstPart }
             <span className='text-red-600 dark:text-red-400 block'>
-              Digital Reality</span>
+              { secondPart }</span>
           </h2>
           <p className='text-base lg:text-lg mb-8 leading-relaxed
           dark:text-gray-300 text-gray-700 max-w-xl'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi consequuntur corporis velit saepe voluptate hic voluptates tempora error, perferendis expedita! Maiores, et velit! Sed, dignissimos aliquam reiciendis tenetur libero itaque.
+            { profile?.about_bio }
           </p>
           <div className='flex gap-4 mb-8'>
-            {socialLinks.map((social, index) => {
-              const IconComponent = social.icon
+            {socials.map((social, index) => {
+
+              const config = socialConfig[social.platform]
+              if(!config) return null
+              const IconComponent = config.icon
+
               return (
                 <a
-                key={index}
-                href="#"
-                aria-label = {social.label}
+                key={social.id}
+                href={social.url}
+                target='_blank'
+                rel="noopener noreferrer"
+                aria-label = {social.platform}
                 data-aos='zoom-in'
                 data-aos-delay={index * 100}
                 className={`w-12 h-12 rounded-full flex items-center
@@ -70,7 +83,7 @@ const About = () => {
                   dark:bg-gray-900/50 backdrop-blur-sm
                   dark:text-gray-300 text-gray-700
                   transition-all duration-300
-                  hover:scale-110 hover:shadow-lg ${social.color}`}>
+                  hover:scale-110 hover:shadow-lg ${config.color}`}>
                     <IconComponent />
                 </a>
               )

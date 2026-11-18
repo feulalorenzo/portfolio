@@ -1,38 +1,11 @@
 import React, { useRef } from 'react'
-import project1 from '../assets/project1.jpg'
-import project2 from '../assets/project2.jpg'
-import project3 from '../assets/project3.jpg'
 import { ChevronRight, ChevronLeft, ExternalLink } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 
-const Projects = () => {
+const Projects = ({ projects = [] }) => {
   const scrollRef = useRef(null)
 
-  const projectsData = [
-    {
-      id: 1,
-      image: project1,
-      title: 'Ermes Project',
-      desc:'The ERMES project aims to develop an advanced technological solution for the motor rehabilitation of patients with neuromotor or neurocognitive disabilities. At the heart of the system is NovaWalk, a collaborative robotic walker featuring impedance control and anthropometric adjustment, integrated with sensors for tracking and monitoring physiological parameters. The device interfaces with a Mixed Reality (MR) and Shared Reality platform, which engages the patient in stimulating "exergames" while allowing the therapist to monitor biomechanical and emotional performance in real time, facilitating a highly personalized therapy.',
-      tags: ['Unity', 'C#']
-    },
-    {
-      id: 2,
-      image: project2,
-      title: 'Grabya!',
-      desc: '2D Puzzle Game developed during a Game Jam contest',
-      tags: ['Godot', 'GDScript']
-    },
-    {
-      id: 3,
-      image: project3,
-      title: 'Project3',
-      desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla itaque dignissimos perferendis consequatur debitis rerum nihil, quam rem ab, recusandae cumque iure animi. Optio aspernatur assumenda quos, excepturi neque quo.',
-      tags: ['React Js', 'Tailwind CSS', 'Framer Motion']
-    },
-  ]
-
-  const infiniteProjects = [...projectsData, ...projectsData]
+  const infiniteProjects = [...projects, ...projects]
 
   const handleScroll = (direction) => {
     if (scrollRef.current) {
@@ -111,7 +84,7 @@ const Projects = () => {
             flex flex-col'>
               <div className='relative overflow-hidden aspect-video
               bg-gray-100 dark:bg-zinc-900'>
-                <img src={project.image} alt={project.title} 
+                <img src={project.image_url} alt={project.title} 
                 className='w-full h-full object-cover transition-transform
                 duration-500 group-hover:scale-105'/>
                 <div className='absolute inset-0 bg-linear-to-t
@@ -131,7 +104,7 @@ const Projects = () => {
                     </h3>
                     <p className='text-xs leading-relaxed mb-4
                     dark:text-gray-400 text-gray-600 line-clamp-2'>
-                      {project.desc}
+                      {project.description}
                     </p>
                   </div>
                   <div>
@@ -151,7 +124,7 @@ const Projects = () => {
                     pt-2 border-t dark:border-zinc-800/80
                     border-gray-100'>
                       <a
-                      href="#"
+                      href={project.github_url}
                       target='_blank'
                       rel='noopener noreferrer'
                       className='inline-flex items-center gap-1.5
@@ -162,7 +135,7 @@ const Projects = () => {
                         <FaGithub size={14} /> Code
                       </a>
                       <a
-                      href="#"
+                      href={project.live_url}
                       target='_blank'
                       rel='noopener noreferrer'
                       className='inline-flex items-center gap-1.5

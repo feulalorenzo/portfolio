@@ -24,24 +24,8 @@ const itemVariants = {
   }
 }
 
-const Certificates = () => {
-  const certificate = [
-    {
-      id: 1,
-      title: 'High School Diploma in Computer Science',
-      issuer: 'ITI A.Pacinotti, Italy',
-      date: '2022',
-      credentialUrl: '#',
-    },
-    {
-      id: 2,
-      title: 'Bachelor\'s Degree in Computer Science',
-      issuer: 'Università degli Studi dell\'Aquila, Italy',
-      date: '2026',
-      credentialUrl: '#',
-    }
-    
-  ]
+const Certificates = ({ certificates = [] }) => {
+
   return (
     <section id='certificates' 
     className='min-h-screen flex items-center relative overflow-hidden
@@ -104,14 +88,14 @@ const Certificates = () => {
           className='grid grid-cols-1 border-t border-b
           border-gray-200/50 dark:border-zinc-800/50
           w-full'>
-            {certificate.map((cert, index) => (
+            {certificates.map((cert, index) => (
               <motion.div
               key={cert.id}
               variants={itemVariants}
               className={`p-3 sm:p-4 flex flex-col
               justify-between group relative transition-colors duration-300
               hover:bg-red-500/5 dark:hover:bg-red-500/10 ${
-                index < certificate.length -1 ? 'border-b' : ''
+                index < certificates.length -1 ? 'border-b' : ''
               } border-gray-200/50 dark:border-zinc-800/50
               `}>
 
@@ -132,7 +116,7 @@ const Certificates = () => {
                       </h3>
                       <span className='text-sm font-medium text-gray-600
                       dark:text-zinc-400 block mt-0.5'>
-                        {cert.issuer}
+                        {cert.certificate_issuer}
                       </span>
                     </div>
                 </div>
@@ -144,9 +128,9 @@ const Certificates = () => {
                   <div className='flex items-center gap-1.5 text-xs
                   font-mono text-gray-500 dark:text-zinc-400'>
                     <Calendar size={13}/>
-                    <span> {cert.date} </span>
+                    <span> {cert.date_year} </span>
                   </div>
-                  <a href={cert.credentialUrl}
+                  <a href={cert.credential_url}
                   target='_blank'
                   rel='noopener noreferrer'
                   className='inline-flex items-center gap-1

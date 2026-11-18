@@ -1,12 +1,7 @@
 import React from 'react'
 
-const Skills = () => {
-  const skills = [
-    { name: 'React Js', percentage: 60, color: '#61DAFB'},
-    { name: 'Tailwind CSS', percentage: 40, color: '#06B6D4'},
-    { name: 'Unity', percentage: 85, color: '#4FC08D'},
-    { name: 'Javascript', percentage: 70, color: '#F7DF1E'},
-  ]
+const Skills = ({ skills = [] , websiteText}) => {
+  
   return (
     <section id='skills' className='min-h-screen flex items-center
     py-20 px-4 sm:px-6 overflow-hidden relative'>
@@ -38,22 +33,22 @@ const Skills = () => {
           </h2>
           <p className='mt-4 text-gray-600
             dark:text-gray-300 max-w-2xl mx-auto'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, illo expedita. Quasi animi quam vel quaerat praesentium esse quibusdam aut, molestias ut placeat, illo odio! Unde earum consectetur dolore minima.
+              {websiteText?.skills_text}
 
           </p>
         </div>
 
         <div className='grid grid-cols" md:grid-cols-4 gap-8
         md:gap-12'>
-          {skills.map((skills, index) => {
+          {skills.map((skill, index) => {
             const radius = 60
             const circumference = 2 * Math.PI * radius
             const offset = circumference - (
-              skills.percentage / 100) * circumference
+              skill.percentage / 100) * circumference
             const size = 150
             return (
               <div
-              key={index}
+              key={skill.id}
               className='flex flex-col items-center'
               data-aos='fade-up'
               data-aos-delay={index * 100}>
@@ -79,7 +74,7 @@ const Skills = () => {
                     cy={size /2}
                     r={radius}
                     fill='none'
-                    stroke={skills.color}
+                    stroke={skill.color}
                     strokeWidth='10'
                     strokeDasharray={circumference}
                     strokeDashoffset={offset}
@@ -94,7 +89,7 @@ const Skills = () => {
                     <div className='text-center'>
                       <span className='text-3xl font-bold dark:text-white
                       text-gray-900'>
-                        {skills.percentage}%
+                        {skill.percentage}%
                       </span>
 
                     </div>
@@ -103,7 +98,7 @@ const Skills = () => {
                 </div>
                 <h3 className='mt-4 text-base
                 font-medium text-center dark:text-gray-200 text-gray-900'>
-                  {skills.name}
+                  {skill.skill_name}
                 </h3>
               </div>
             )
